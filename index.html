@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiS: Scholars in Solidarity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2942;
+            --rose: #C4666E;
+            --blush: #E8B4B8;
+            --cream: #FDF8F5;
+            --charcoal: #2D2D2D;
+            --warm-gray: #6B6161;
+            --gold: #C9A227;
+            --sage: #7A8B6E;
+            --deep-plum: #4A1C40;
+            --terracotta: #C4785C;
+            --olive: #6B7D5C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Elements */
+        .decorative-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--burgundy), var(--rose));
+            margin: 1.5rem auto;
+        }
+
+        .decorative-line-left {
+            margin: 1.5rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(253, 248, 245, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 41, 66, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 3rem;
+            box-shadow: 0 4px 30px rgba(139, 41, 66, 0.06);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--burgundy);
+            line-height: 1;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            line-height: 1.3;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--burgundy);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(253, 248, 245, 0.8)), 
+                        url('CoverImage.png');
+            background-size: 50% ;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: var(--cream);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5.5vw, 4rem);
+            font-weight: 600;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--burgundy);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--warm-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--warm-gray);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+            line-height: 1.9;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--burgundy);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--deep-plum);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 41, 66, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 1px solid var(--charcoal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: white;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .section-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rose);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 600;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--warm-gray);
+            font-weight: 300;
+            line-height: 1.9;
+        }
+
+        /* Event Announcement Section */
+        .event-announcement {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--deep-plum) 100%);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-announcement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E");
+        }
+
+        .event-card {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            color: white;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--blush);
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .event-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+
+        .event-date-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .event-day {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--sand);
+        }
+
+        .event-time {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .event-note {
+            font-size: 0.85rem;
+            color: var(--blush);
+            font-style: italic;
+        }
+
+        .event-speakers {
+            margin-bottom: 2.5rem;
+        }
+
+        .speakers-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 1.5rem;
+        }
+
+        .speakers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .speaker {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .speaker:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .speaker strong {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .speaker span {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .event-announcement .btn-primary {
+            background: white;
+            color: var(--burgundy);
+        }
+
+        .event-announcement .btn-primary:hover {
+            background: var(--blush);
+            color: var(--deep-plum);
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+            position: relative;
+        }
+
+        .about-content-text-only {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content-text-only .about-text {
+            text-align: center;
+        }
+
+        .about-content-text-only .decorative-line-left {
+            margin: 1.5rem auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--warm-gray);
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .about-text p strong {
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-image-frame {
+            position: relative;
+            padding: 1.5rem;
+        }
+
+        .about-image-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            border: 1px solid var(--blush);
+            z-index: 0;
+        }
+
+        .about-image-frame img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 350px;
+            display: block;
+            box-shadow: 0 20px 50px rgba(139, 41, 66, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Vision Section */
+        .vision {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--deep-plum) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23ffffff' stroke-opacity='0.03' stroke-width='1'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .vision-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .vision .section-label {
+            color: var(--blush);
+        }
+
+        .vision .section-title {
+            color: white;
+        }
+
+        .vision-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-style: italic;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.92);
+            text-align: center;
+        }
+
+        .vision-quote {
+            margin-top: 2.5rem;
+            padding: 2rem 2.5rem;
+            border-left: 2px solid var(--blush);
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .vision-quote p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            margin-bottom: 0;
+        }
+
+        /* Goals Section */
+        .goals {
+            background: var(--cream);
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .goal-card {
+            background: white;
+            padding: 2rem 2.5rem;
+            position: relative;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(139, 41, 66, 0.06);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, var(--burgundy), var(--rose));
+            transition: height 0.4s ease;
+        }
+
+        .goal-card:hover::before {
+            height: 100%;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 41, 66, 0.08);
+        }
+
+        .goal-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--blush);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .goal-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .goal-content p {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Team Section */
+        .team {
+            background: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .team-member {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .team-member:nth-child(even) {
+            direction: rtl;
+        }
+
+        .team-member:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .team-photo {
+            position: relative;
+        }
+
+        .team-photo::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            right: -1rem;
+            bottom: -1rem;
+            background: linear-gradient(135deg, var(--blush), var(--rose));
+            opacity: 0.25;
+            z-index: 0;
+            border-radius: 4px;
+        }
+
+        .team-photo img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(15%);
+            transition: filter 0.4s ease;
+        }
+
+        .team-photo img.photo-contain {
+            object-fit: contain;
+            background-color: var(--cream);
+        }
+
+        .team-member:hover .team-photo img {
+            filter: grayscale(0%);
+        }
+
+        .team-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--rose);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+
+        .team-bio {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 3.5rem 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-brand .logo-mark {
+            color: white;
+        }
+
+        .footer-brand .logo-text {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--blush);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 2.5rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+        }
+
+        .footer-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-visual {
+                order: -1;
+                text-align: center;
+            }
+
+            .about-image-frame {
+                display: inline-block;
+            }
+
+            .team-member,
+            .team-member:nth-child(even) {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                text-align: center;
+            }
+
+            .team-photo {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .team-photo::before {
+                top: 0.5rem;
+                left: 0.5rem;
+                right: -0.5rem;
+                bottom: -0.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form input {
+                border-right: 1px solid rgba(45, 45, 45, 0.2);
+                border-bottom: none;
+            }
+
+            .goal-card {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <span class="logo-mark">SiS</span>
+            <span class="logo-text">Scholars in<br>Solidarity</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#vision">Vision</a></li>
+            <li><a href="#goals">Goals</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                SiS: Scholars in
+                <span>Solidarity</span>
+            </h1>
+            <p class="hero-subtitle">A Feminist Platform for Dialogue, Research & Community</p>
+            <div class="decorative-line"></div>
+            <p class="hero-description">
+                Building a community that thinks and speaks collectively — uniting scholars, activists, artists, workers, students, and the public.
+            </p>
+            <div class="hero-cta">
+                <a href="#about" class="btn btn-primary">Learn More</a>
+                <a href="#team" class="btn btn-secondary">Meet the Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Announcement -->
+    <section class="event-announcement" id="event">
+        <div class="container">
+            <div class="event-card">
+                <div class="event-badge">Inaugural Event</div>
+                <h2 class="event-title">In Sisterhood We Stand</h2>
+                <p class="event-subtitle">Inaugural Lectures</p>
+                <div class="event-date-block">
+                    <span class="event-day">March 8, 2026</span>
+                    <span class="event-time">12:00 PM</span>
+                    <span class="event-note">International Women's Day</span>
+                </div>
+                <div class="event-speakers">
+                    <p class="speakers-label">Featuring</p>
+                    <div class="speakers-list">
+                        <div class="speaker">
+                            <strong>Neringa Tumėnaitė</strong>
+                            <span>PhD Research Scholar, SOAS, University of London</span>
+                        </div>
+                        <div class="speaker">
+                            <strong>Sohini Saha</strong>
+                            <span>Assistant Professor, Dept. of Sociology, St. Xavier's College, Kolkata</span>
+                        </div>
+                        <div class="speaker">
+                            <strong>Rajlakshmi Ghosh</strong>
+                            <span>Independent Scholar</span>
+                        </div>
+                        <div class="speaker">
+                            <strong>Samata Biswas</strong>
+                            <span>Assistant Professor, Dept. of English, The Sanskrit College and University, Kolkata</span>
+                        </div>
+                        <div class="speaker">
+                            <strong>Azeemah Saleem</strong>
+                            <span>Visiting Fellow, Centre for Studies of Plural Societies, New Delhi</span>
+                        </div>
+                        <div class="speaker">
+                            <strong>Utsarjana Mutsuddi</strong>
+                            <span>PhD Research Scholar, BITS, Goa</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="THE_INAUGURAL_EVENT.pdf" class="btn btn-primary" target="_blank">View Event Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content-text-only">
+                <div class="about-text">
+                    <span class="section-label">About</span>
+                    <h2>Sisters in Solidarity</h2>
+                    <div class="decorative-line decorative-line-left"></div>
+                    <p>
+                        <strong>Sisters in Solidarity (SIS)</strong> is a feminist platform born out of a shared urgency to have a space dedicated to conversations on gender. Here we strive to underline that gender is not an abstract idea but it is lived and practiced in quotidian lives.
+                    </p>
+                    <p>
+                        The platform, launched on Women's Day 2026, is committed to bring together scholars, activists, artists, workers, students, public to build a community that think and speak collectively. It is a collaborative space for dialogue, research, art, advocacy, and community-building.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision" id="vision">
+        <div class="vision-content">
+            <span class="section-label">Vision</span>
+            <h2 class="section-title">Plural, Intersectional, Rooted</h2>
+            <div class="decorative-line" style="background: linear-gradient(90deg, var(--blush), rgba(255,255,255,0.5));"></div>
+            <div class="vision-text">
+                <p>
+                    Feminism is not singular — it is plural, intersectional, rooted in diverse histories of resistance across caste, class, race, sexuality, religion, ability, geography.
+                </p>
+            </div>
+            <div class="vision-quote">
+                <p>
+                    Our platform aims to generate a North-South dialogue and build solidarities across differences while remaining attentive to structural inequalities, epistemic and systemic violence, and prioritising lived experience. Our conversations shall be rigorous yet lucid, critical yet caring, and political yet hopeful. We aim to amplify marginalised voices from the grassroots and bridge the gaps between theory and praxis. We find that critical engagement with structures of power is imperative to cultivate an intergenerational feminist visibility.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="goals" id="goals">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Goals</span>
+                <h2 class="section-title">Our Commitments</h2>
+                <p class="section-subtitle">Building bridges through dialogue, knowledge, creativity, and collective action.</p>
+            </div>
+            <div class="goals-grid">
+                <div class="goal-card fade-in">
+                    <div class="goal-number">01</div>
+                    <div class="goal-content">
+                        <h3>Curate Conversations</h3>
+                        <p>Creating meaningful dialogues that center diverse feminist perspectives and lived experiences across boundaries.</p>
+                    </div>
+                </div>
+                <div class="goal-card fade-in">
+                    <div class="goal-number">02</div>
+                    <div class="goal-content">
+                        <h3>North-South Dialogue</h3>
+                        <p>Fostering connections and knowledge exchange between the Global North and South, acknowledging power differentials.</p>
+                    </div>
+                </div>
+                <div class="goal-card fade-in">
+                    <div class="goal-number">03</div>
+                    <div class="goal-content">
+                        <h3>Knowledge Production</h3>
+                        <p>Contributing to feminist scholarship that is accessible, rigorous, and grounded in diverse epistemologies.</p>
+                    </div>
+                </div>
+                <div class="goal-card fade-in">
+                    <div class="goal-number">04</div>
+                    <div class="goal-content">
+                        <h3>Creative Feminisms</h3>
+                        <p>Harboring spaces where art, performance, and creative expression become tools for feminist discourse and resistance.</p>
+                    </div>
+                </div>
+                <div class="goal-card fade-in">
+                    <div class="goal-number">05</div>
+                    <div class="goal-content">
+                        <h3>Community Outreach</h3>
+                        <p>Extending our reach beyond academia to engage workers, activists, and communities in feminist praxis.</p>
+                    </div>
+                </div>
+                <div class="goal-card fade-in">
+                    <div class="goal-number">06</div>
+                    <div class="goal-content">
+                        <h3>Capacity Building</h3>
+                        <p>Empowering emerging scholars and activists with skills, networks, and platforms to advance feminist agendas.</p>
+                    </div>
+                </div>
+                <div class="goal-card fade-in">
+                    <div class="goal-number">07</div>
+                    <div class="goal-content">
+                        <h3>Formations of Solidarity</h3>
+                        <p>Building lasting alliances across differences to collectively challenge patriarchy and intersecting oppressions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Team</span>
+                <h2 class="section-title">The Founders</h2>
+                <p class="section-subtitle">Scholars and researchers committed to feminist scholarship and social change.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="team-photo">
+                        <img src="Debasree.jpeg" alt="Debasree Sarkar" class="photo-contain">
+                    </div>
+                    <div class="team-info">
+                        <h3>Debasree Sarkar</h3>
+                        <p class="team-role">Co-Founder & Researcher</p>
+                        <p class="team-bio">
+                            Having completed her MA in History from Presidency University and M.Phil. in Women's Studies from the School of Women's Studies, Jadavpur University, Debasree is presently pursuing Ph.D. from the Department of History, Diamond Harbour Women's University (Sarisha, West Bengal, India). The theme of her research has been reading the social history of Bengal through women's autobiographical writings, with special emphasis on their sartorial changes. Apart from being involved in various academic projects, she has published in reputed newspapers and journals and contributed book chapters dealing with fashion, gender-based violence, representational politics, displacement, and environment. She has presented in international platforms such as the Dress and Body Association and the Northeast Popular Culture Association. Recently, she collaborated on a project on "The Past as Present: Approaches to Pedagogy in History and Archaeology" organised by the Shiv Nadar University. She was awarded the Papia Ghosh Memorial Prize at the 83rd session of the Indian History Congress in 2024 for her paper on "Sati and Its Afterlife: Social Desire and Public Discourse." She is also on the New Scholars' Committee in NiCHE Canada.
+                        </p>
+                    </div>
+                </div>
+                <div class="team-member fade-in">
+                    <div class="team-photo">
+                        <img src="Amrita.jpg" alt="Amrita DasGupta">
+                    </div>
+                    <div class="team-info">
+                        <h3>Amrita DasGupta</h3>
+                        <p class="team-role">Co-Founder & Researcher</p>
+                        <p class="team-bio">
+                            Amrita is a PhD scholar at the Department of Gender Studies in the School of Oriental and African Studies (SOAS University of London) and a guest teacher at the London School of Economics and Political Science (LSE). Her research focuses on the evolution and history of port brothels in the Indian Ocean deltas. She has been a fully funded visiting student research collaborator at Princeton University, a visiting scholar at the King's India Institute (King's College London), a Landhaus Fellow at the Rachel Carson Centre for Environment and Society, LMU. Her decade-long research on the Sundarbans was recognised at the launch of the "Mangrove Project" at the House of Lords, Parliament of the United Kingdom. Some of her recent publications are "Puppets at the Hands of Water" published in the Springs Journal (2025), "Accommodative Apparatus: Drawing the Life of Sex Work on the Eroding Coasts of Sundarbans" in the Environment and History Journal (2024).
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interns Section -->
+            <div class="section-header" style="margin-top: 5rem;">
+                <span class="section-label">Intern</span>
+                <h2 class="section-title">Research Intern</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member fade-in">
+                    <div class="team-photo">
+                        <img src="Ingita.jpeg" alt="Ingita Datta">
+                    </div>
+                    <div class="team-info">
+                        <h3>Ingita Datta</h3>
+                        <p class="team-role">Research Intern</p>
+                        <p class="team-bio">
+                            Ingita Datta is a postgraduate student of Ancient Indian and World History from The Sanskrit College and University, where she also completed her B.A. (Honours) in the same discipline. Her academic interests center on Ancient Indian history, women's history, and the representation of women across various religious traditions and cultural contexts. She is particularly interested in examining how women's voices, identities, and lived experiences are articulated within religious texts and historical narratives. Her Master's research project, <em>"Therīgāthā: Therider Bohumātrik Swar,"</em> explores the multidimensional voices of early Buddhist nuns through the original Pali text of the <em>Therīgāthā</em>, highlighting women's agency and spiritual self-expression in early Buddhist tradition.
+                        </p>
+                        <p class="team-bio" style="margin-top: 1rem;">
+                            She has participated in workshops on interdisciplinary historical methodology and museum studies, and undertook a field study at Chandraketugarh, gaining practical exposure to archaeological and heritage research. She has also volunteered in heritage-related cultural programs, demonstrating initiative, teamwork, and organizational skills. Having studied Pali extensively at both undergraduate and postgraduate levels, she possesses strong textual interpretation and analytical abilities. She also holds a Diploma in Computer Application and has five years of experience teaching school and undergraduate students, reflecting her communication and mentoring skills. Ingita is keen to contribute her academic training, research aptitude, and deep interest in gender and religious studies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-mark">SiS</span>
+                <span class="logo-text">Scholars in<br>Solidarity</span>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#vision">Vision</a>
+                <a href="#goals">Goals</a>
+                <a href="#team">Team</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Sisters in Solidarity. Launched on International Women's Day.</p>
+            <p class="footer-tagline">A platform for dialogue, research, art, advocacy, and community-building.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 80);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
